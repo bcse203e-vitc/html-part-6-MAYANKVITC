@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Variables</title>
+    <script>
+        function swap() {
+            let a = document.getElementById('a').value;
+            let b = document.getElementById('b').value;
+
+            // Convert inputs to numbers
+            a = Number(a);
+            b = Number(b);
+
+            document.getElementById('beforeSwap').textContent = `Before swapping: a = ${a}, b = ${b}`;
+
+            // Using addition and subtraction to swap
+            a = a + b;
+            b = a - b;
+            a = a - b;
+
+            document.getElementById('afterSwap').textContent = `After swapping: a = ${a}, b = ${b}`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Swap Two Variables Without Using a Third Variable</h2>
+    <input type="number" id="a" name="a"><br><br>
+    <input type="number" id="b" name="b"><br><br>
+    <button onclick="swap()">Swap</button>
+    <p id="beforeSwap"></p>
+    <p id="afterSwap"></p>
+</body>
+</html>
