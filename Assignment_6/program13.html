@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Smallest and Second Largest Numbers</title>
+    <script>
+        function findSecondSmallestAndLargest(arr) {
+            if (arr.length < 2) {
+                return { secondSmallest: null, secondLargest: null };
+            }
+
+            let uniqueArr = [...new Set(arr)].sort((a, b) => a - b);
+
+            let secondSmallest = uniqueArr.length > 1 ? uniqueArr[1] : null;
+            let secondLargest = uniqueArr.length > 1 ? uniqueArr[uniqueArr.length - 2] : null;
+
+            return { secondSmallest, secondLargest };
+        }
+
+        function displayResults() {
+            let inputArray = document.getElementById('inputArray').value.split(',').map(Number);
+            let { secondSmallest, secondLargest } = findSecondSmallestAndLargest(inputArray);
+            
+            document.getElementById('result').textContent = `Second Smallest: ${secondSmallest}, Second Largest: ${secondLargest}`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Find the Second Smallest and Second Largest Numbers in an Array</h2>
+    <label for="inputArray">Enter an array of numbers separated by commas:</label>
+    <input type="text" id="inputArray" name="inputArray"><br><br>
+    <button onclick="displayResults()">Find</button>
+    <p id="result"></p>
+</body>
+</html>
