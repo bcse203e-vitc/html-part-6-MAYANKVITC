@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Character Occurrences</title>
+    <script>
+        function countCharacterOccurrences(str) {
+            let charCount = {};
+
+            for (let char of str) {
+                if (charCount[char]) {
+                    charCount[char]++;
+                } else {
+                    charCount[char] = 1;
+                }
+            }
+
+            return charCount;
+        }
+
+        function displayCharacterOccurrences() {
+            let inputString = document.getElementById('inputString').value;
+            let occurrences = countCharacterOccurrences(inputString);
+            let resultString = JSON.stringify(occurrences);
+
+            document.getElementById('result').textContent = `Character occurrences: ${resultString}`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Count the Occurrences of Each Character in a String</h2>
+    <label for="inputString">Enter a string:</label>
+    <input type="text" id="inputString" name="inputString"><br><br>
+    <button onclick="displayCharacterOccurrences()">Count</button>
+    <p id="result"></p>
+</body>
+</html>
