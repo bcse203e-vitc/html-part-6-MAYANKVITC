@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Array Without Using .sort()</title>
+    <script>
+        // Bubble Sort function for ascending order
+        function bubbleSortAscending(arr) {
+            let n = arr.length;
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        // Swap elements
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+            return arr;
+        }
+
+        // Bubble Sort function for descending order
+        function bubbleSortDescending(arr) {
+            let n = arr.length;
+            for (let i = 0; i < n - 1; i++) {
+                for (let j = 0; j < n - 1 - i; j++) {
+                    if (arr[j] < arr[j + 1]) {
+                        // Swap elements
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+            return arr;
+        }
+
+        function sortArray() {
+            let inputArray = document.getElementById('inputArray').value.split(',').map(Number);
+            let method = document.getElementById('method').value;
+            let sortedArray;
+
+            if (method === 'ascending') {
+                sortedArray = bubbleSortAscending(inputArray);
+            } else if (method === 'descending') {
+                sortedArray = bubbleSortDescending(inputArray);
+            }
+
+            document.getElementById('result').textContent = `Sorted array: [${sortedArray.join(', ')}]`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Sort an Array Without Using .sort()</h2>
+    <label for="inputArray">Enter an array of numbers separated by commas:</label>
+    <input type="text" id="inputArray" name="inputArray"><br><br>
+    <label for="method">Select sorting method:</label>
+    <select id="method" name="method">
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+    </select><br><br>
+    <button onclick="sortArray()">Sort Array</button>
+    <p id="result"></p>
+</body>
+</html>
