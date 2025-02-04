@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates from Array</title>
+    <script>
+        // Solution using Set()
+        function removeDuplicatesUsingSet(arr) {
+            return [...new Set(arr)];
+        }
+
+        // Solution without using Set()
+        function removeDuplicatesWithoutSet(arr) {
+            let uniqueArr = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (!uniqueArr.includes(arr[i])) {
+                    uniqueArr.push(arr[i]);
+                }
+            }
+            return uniqueArr;
+        }
+
+        function removeDuplicates() {
+            let inputArray = document.getElementById('inputArray').value.split(',').map(Number);
+            let method = document.getElementById('method').value;
+            let result;
+
+            if (method === 'set') {
+                result = removeDuplicatesUsingSet(inputArray);
+            } else if (method === 'noSet') {
+                result = removeDuplicatesWithoutSet(inputArray);
+            }
+
+            document.getElementById('result').textContent = `Array with duplicates removed: [${result.join(', ')}]`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Remove Duplicates from an Array</h2>
+    <label for="inputArray">Enter an array of numbers separated by commas:</label>
+    <input type="text" id="inputArray" name="inputArray"><br><br>
+    <label for="method">Select method:</label>
+    <select id="method" name="method">
+        <option value="set">Using Set()</option>
+        <option value="noSet">Without Using Set()</option>
+    </select><br><br>
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <p id="result"></p>
+</body>
+</html>
