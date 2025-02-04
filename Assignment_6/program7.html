@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Series</title>
+    <script>
+        function generateFibonacciIterative(N) {
+            let fib = [0, 1];
+            for (let i = 2; i < N; i++) {
+                fib[i] = fib[i - 1] + fib[i - 2];
+            }
+            return fib.slice(0, N);
+        }
+
+        function generateFibonacciRecursive(N) {
+            if (N === 1) return [0];
+            if (N === 2) return [0, 1];
+
+            let fib = generateFibonacciRecursive(N - 1);
+            fib.push(fib[fib.length - 1] + fib[fib.length - 2]);
+            return fib;
+        }
+
+        function generateFibonacci() {
+            let N = Number(document.getElementById('number').value);
+            let method = document.getElementById('method').value;
+            let result;
+
+            if (method === 'iterative') {
+                result = generateFibonacciIterative(N);
+            } else if (method === 'recursive') {
+                result = generateFibonacciRecursive(N);
+            }
+
+            document.getElementById('result').textContent = `The first ${N} numbers in the Fibonacci sequence are: ${result.join(', ')}.`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Generate Fibonacci Series</h2>
+    <label for="number">Enter the number of Fibonacci numbers to generate (N):</label>
+    <input type="number" id="number" name="number"><br><br>
+    <label for="method">Select method:</label>
+    <select id="method" name="method">
+        <option value="iterative">Iterative</option>
+        <option value="recursive">Recursive</option>
+    </select><br><br>
+    <button onclick="generateFibonacci()">Generate</button>
+    <p id="result"></p>
+</body>
+</html>
